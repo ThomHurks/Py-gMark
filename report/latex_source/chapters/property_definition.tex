@@ -1,0 +1,15 @@
+To address the difficulties regarding edge-label graphs mentioned in the previous chapter, we can instead consider the property graph. Property graphs allow also labeling nodes, as shown in definition \ref{def:property_graph}. For example, in a social network one could have nodes of type Person and University. Whereas with edge-labeled graphs one would create a node Person and have a relationship "is" from nodes to the Person node to indicate those nodes are Persons, with property graphs we simply label those nodes as Person. Such a system makes the resulting graphs smaller and more intuitive to understand. In addition to labeled nodes, property graphs also associate attributes with edges and nodes. For example, a node of type Person can have the property \textit{family name}. Again, using extra nodes and edges this could also be modelled using an edge-labeled graph, but it would be more cumbersome. Also, with the property graph model we have a much more direct notion of a schema; the set of attribute names of nodes of a certain type can be considered as the schema of that node type. In edge-labeled graphs it is less clear which edges contribute to the schema of the node type and which edges express a relationship with a different node type, in addition to the fact that nodes cannot be labeled in edge-labeled graphs.
+
+\begin{defn}
+The definition of a property graph \cite{2017ADatabases}. A property graph $G$ is a tuple $(V, E, \rho, \lambda, \sigma)$, where:
+    \begin{enumerate}
+      \item $V$ is a finite set of vertices (or nodes).
+      \item $E$ is a finite set of edges such that $V$ and $E$ have no elements in common.
+      \item $\rho: E \rightarrow (V \times V)$ is a total function. Intuitively, $\rho(e) = (v_1, v_2)$ indicates that $e$ is a directed edge from node $v_1$ to node $v_2$ in $G$.
+      \item $\lambda: (V \cup E) \rightarrow Lab$ is a total function with $Lab$ a set of labels. Intuitively, if $v \in V$ (resp., $e \in E$) and $\rho (v) = l$ (resp., $\rho (e) = l$), then $l$ is the label of node $v$ (resp., edge $e$) in $G$.
+      \item $\sigma: (V \cup E) \times Prop \rightarrow Val$ is a partial function with $Prop$ a finite set of properties and $Val$ a set of values. Intuitively, if $v \in V$ (resp., $e \in E$), $p \in Prop$ and $\sigma (v,p) = s$ (resp., $\sigma (e,p) = s$), then $s$ is the value of property $p$ for node $v$ (resp., edge $e$) in the property graph $G$.
+    \end{enumerate}
+    \label{def:property_graph}
+\end{defn}
+
+By extending gMark to the property graph model, users can easily and clearly indicate different node types and give those nodes a set of attributes. For example, gMark could generate nodes of type Person each with attributes first name, family name, gender and birth date. This moves the scope of gMark away from just generating graphs and into the area of generating valid numeric and textual values for these attributes.
